@@ -1,0 +1,1 @@
+C:\AnthonyFiles\2018_Training\Xamarin\Android\tictactoe\tictactoe\obj\Debug\tictactoe.csproj.CoreCompileInputs.cache
