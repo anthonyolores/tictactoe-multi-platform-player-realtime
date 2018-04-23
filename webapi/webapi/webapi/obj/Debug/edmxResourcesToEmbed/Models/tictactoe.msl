@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemoDBModelStoreContainer" CdmEntityContainer="DemoDBEntities">
+    <EntitySetMapping Name="boards">
+      <EntityTypeMapping TypeName="DemoDBModel.board">
+        <MappingFragment StoreEntitySet="board">
+          <ScalarProperty Name="board_id" ColumnName="board_id" />
+          <ScalarProperty Name="player_id" ColumnName="player_id" />
+          <ScalarProperty Name="moves" ColumnName="moves" />
+          <ScalarProperty Name="game_code" ColumnName="game_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="players">
+      <EntityTypeMapping TypeName="DemoDBModel.player">
+        <MappingFragment StoreEntitySet="player">
+          <ScalarProperty Name="player_id" ColumnName="player_id" />
+          <ScalarProperty Name="player_name" ColumnName="player_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tictactoes">
+      <EntityTypeMapping TypeName="DemoDBModel.tictactoe">
+        <MappingFragment StoreEntitySet="tictactoe">
+          <ScalarProperty Name="game_id" ColumnName="game_id" />
+          <ScalarProperty Name="game_code" ColumnName="game_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

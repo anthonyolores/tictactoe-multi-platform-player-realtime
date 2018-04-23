@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="board">
+    <Key>
+      <PropertyRef Name="board_id" />
+    </Key>
+    <Property Name="board_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="player_id" Type="int" />
+    <Property Name="moves" Type="varchar" MaxLength="50" />
+    <Property Name="game_code" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="player">
+    <Key>
+      <PropertyRef Name="player_id" />
+    </Key>
+    <Property Name="player_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="player_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tictactoe">
+    <Key>
+      <PropertyRef Name="game_id" />
+    </Key>
+    <Property Name="game_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="game_code" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__board__player_id__619B8048">
+    <End Role="player" Type="Self.player" Multiplicity="0..1" />
+    <End Role="board" Type="Self.board" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="player">
+        <PropertyRef Name="player_id" />
+      </Principal>
+      <Dependent Role="board">
+        <PropertyRef Name="player_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DemoDBModelStoreContainer">
+    <EntitySet Name="board" EntityType="Self.board" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="player" EntityType="Self.player" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tictactoe" EntityType="Self.tictactoe" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__board__player_id__619B8048" Association="Self.FK__board__player_id__619B8048">
+      <End Role="player" EntitySet="player" />
+      <End Role="board" EntitySet="board" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
