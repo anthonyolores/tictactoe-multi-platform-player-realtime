@@ -1,0 +1,31 @@
+$font-stack:    Helvetica, sans-serif;
+$cell-not-selected: #fff;
+$cell-border-not-selected: solid 5px #ddd;
+$cell-border-active: solid 1px blue;
+
+
+.game-container{
+    margin-top:20px;
+    .game-cell{
+        height:200px;
+        border-left: $cell-border-not-selected;
+        border-top: $cell-border-not-selected;
+        background: $cell-not-selected;
+    }    
+    .game-cell:nth-child(3n+0) {
+        border-right: $cell-border-not-selected;
+    }
+    .game-cell:nth-child(1n+7) {
+        border-bottom: $cell-border-not-selected;
+    }
+}
+
+.btn-container{
+    margin-top:20px;
+    .game-btn{
+        height:100px;
+        font-size: 3.0em;
+        border-radius: 0px;
+        // border: $cell-border-active;
+    }    
+}
