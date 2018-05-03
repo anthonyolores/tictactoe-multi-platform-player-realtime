@@ -88,31 +88,49 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/30/2016 17:07:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.DependencyCollector.dll">
-      <publishTime>07/12/2016 12:45:42</publishTime>
+      <publishTime>12/07/2016 12:45:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
-      <publishTime>07/12/2016 12:50:34</publishTime>
+      <publishTime>12/07/2016 12:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
-      <publishTime>06/12/2016 16:15:48</publishTime>
+      <publishTime>12/06/2016 16:15:48</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Web.dll">
-      <publishTime>07/12/2016 12:49:10</publishTime>
+      <publishTime>12/07/2016 12:49:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.WindowsServer.dll">
-      <publishTime>07/12/2016 12:50:34</publishTime>
+      <publishTime>12/07/2016 12:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
-      <publishTime>06/12/2016 16:09:52</publishTime>
+      <publishTime>12/06/2016 16:09:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
+      <publishTime>03/06/2018 04:22:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
+      <publishTime>03/06/2018 04:22:32</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/05/2017 09:59:26</publishTime>
     </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>01/13/2014 16:11:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>01/13/2014 16:11:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>01/13/2014 16:11:08</publishTime>
+    </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>05/01/2012 12:08:46</publishTime>
+      <publishTime>01/05/2012 12:08:46</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>03/08/2014 20:33:56</publishTime>
+      <publishTime>08/03/2014 20:33:56</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/13/2012 12:19:34</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>04/13/2017 15:47:48</publishTime>
@@ -259,19 +277,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/13/2017 15:47:48</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>01/02/2018 12:17:18</publishTime>
+      <publishTime>02/01/2018 12:17:18</publishTime>
     </File>
     <File Include="bin/System.Web.Cors.dll">
-      <publishTime>01/02/2018 12:15:30</publishTime>
+      <publishTime>02/01/2018 12:15:30</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 05:04:30</publishTime>
     </File>
     <File Include="bin/System.Web.Http.Cors.dll">
-      <publishTime>01/02/2018 12:18:02</publishTime>
+      <publishTime>02/01/2018 12:18:02</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>01/02/2018 12:17:40</publishTime>
+      <publishTime>02/01/2018 12:17:40</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
       <publishTime>01/28/2015 05:03:46</publishTime>
@@ -280,7 +298,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 05:02:18</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>11/02/2014 16:26:04</publishTime>
+      <publishTime>02/11/2014 16:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>01/28/2015 05:02:32</publishTime>
@@ -295,13 +313,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 05:04:30</publishTime>
     </File>
     <File Include="bin/webapi.dll">
-      <publishTime>04/11/2018 16:21:25</publishTime>
+      <publishTime>05/02/2018 17:37:38</publishTime>
     </File>
     <File Include="bin/webapi.pdb">
-      <publishTime>04/11/2018 16:21:25</publishTime>
+      <publishTime>05/02/2018 17:37:38</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>10/09/2013 17:28:38</publishTime>
+      <publishTime>09/10/2013 17:28:38</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
       <publishTime>04/11/2018 16:00:09</publishTime>
@@ -328,7 +346,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2018 16:00:09</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>04/11/2018 16:00:08</publishTime>
+      <publishTime>04/23/2018 13:54:41</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/11/2018 16:00:09</publishTime>
@@ -345,6 +363,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery-1.10.2.min.map">
       <publishTime>04/11/2018 16:00:09</publishTime>
     </File>
+    <File Include="Scripts/jquery.signalR-2.2.3.js">
+      <publishTime>04/16/2018 15:56:25</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-2.2.3.min.js">
+      <publishTime>04/16/2018 15:56:24</publishTime>
+    </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>04/11/2018 16:00:12</publishTime>
     </File>
@@ -355,13 +379,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2018 16:00:13</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/11/2018 16:00:08</publishTime>
+      <publishTime>04/23/2018 14:12:08</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/11/2018 16:00:08</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/11/2018 16:00:08</publishTime>
+      <publishTime>04/23/2018 13:41:18</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/11/2018 16:00:08</publishTime>
@@ -370,7 +394,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2018 16:00:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/11/2018 16:23:13</publishTime>
+      <publishTime>05/02/2018 17:37:40</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -1,8 +1,33 @@
-<div class="container">
+
+<div class="container start-page" [hidden]="showBoard || showGames">
+    <div class="row player-name-container">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <input type="text" 
+        placeholder="Your Name" 
+        class="player-name" 
+        id="player-name"
+        [(ngModel)]="playerName"
+        #name/>   
+      </div>      
+    </div>
+    <div class="row btn-container">
+      <div class="col-md-6 col-sm-6 col-xs-6 game-btn btn btn-success btn-new-game"
+      (click)="newGame($event)">
+          New
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6 game-btn btn btn-primary btn-join-game"
+      (click)="joinGame($event)">
+          Join
+      </div>
+    </div>
+  </div>
+<div class="container" [hidden]="!showBoard">
     <div class="row game-container">
         <div class="col-md-4 col-sm-4 col-xs-4 game-cell"
         *ngFor="let cell of board; let i = index">
-          x
+          <div class="cell-text">
+            X
+          </div>
         </div>
     </div>
     <div class="row btn-container">
@@ -13,4 +38,26 @@
           O
       </div>
     </div>
+  </div>
+
+  <div class="container get-games" [hidden]="!showGames">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 col-xs-8 col-sm-8">
+            <ul>
+                <li *ngFor="let gameItem of games; let i = index">     
+                  {{gameItem.GameCode}}
+                  <span class="player-waiting-label">{{gameItem.PlayerName}} is waiting...</span>
+                  <div class="btn-primary player-join-btn"
+                  (click)="playerJoinGame(i)">Join Game
+                </div>
+                </li>
+            </ul>
+        </div>
+      </div>
+  </div>
+
+  <div class="back-homepage-btn btn-info" [hidden]="!showBoard && !showGames"
+  (click)="homePage($event)">
+      Home Page
   </div>

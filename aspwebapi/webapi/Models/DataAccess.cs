@@ -29,6 +29,52 @@ namespace webapi.Models
                 con.Close();  
             }  
 		}
+       //To View all employees details    
+        public IEnumerable<Object> GetGames()  
+        {  
+            List<GetGamesItem> gameList = new List<GetGamesItem>();  
+  
+            using (SqlConnection con = new SqlConnection(connectionString))  
+            {  
+                SqlCommand cmd = new SqlCommand("getGames", con);  
+                cmd.CommandType = CommandType.StoredProcedure;  
+                con.Open();  
+                SqlDataReader rdr = cmd.ExecuteReader();  
+                while (rdr.Read())  
+                {  
+					GetGamesItem item = new GetGamesItem(Convert.ToInt32(rdr["no_players"]), rdr["game_code"].ToString(), rdr["player_name"].ToString());
+                    gameList.Add(item);  
+                }  
+                con.Close();  
+            }  
+            return gameList;  
+        } 
+
+		public IEnumerable<GetGameBoard> GetGameBoards(String gameCode)  
+        {  
+            List<GetGameBoard> gameBoardList = new List<GetGameBoard>();  
+  
+            using (SqlConnection con = new SqlConnection(connectionString))  
+            {  
+                SqlCommand cmd = new SqlCommand("getGameBoards", con);  
+                cmd.CommandType = CommandType.StoredProcedure;  
+				cmd.Parameters.AddWithValue("@game_code", gameCode);  
+                con.Open();  
+                SqlDataReader rdr = cmd.ExecuteReader();  
+                while (rdr.Read())  
+                {  
+					GetGameBoard gameBoard = new GetGameBoard();
+					gameBoard.BoardId = Convert.ToInt32(rdr["board_id"]); 
+					gameBoard.PlayerId = Convert.ToInt32(rdr["player_id"]); 
+					gameBoard.Moves = rdr["moves"].ToString();
+					gameBoard.GameCode = rdr["game_code"].ToString();
+
+					gameBoardList.Add(gameBoard);
+                }  
+                con.Close();  
+            }  
+            return gameBoardList;  
+        } 
 
 		public void JoinGame(JoinPlayer player)  
         {  
@@ -38,6 +84,48 @@ namespace webapi.Models
                 cmd.CommandType = CommandType.StoredProcedure;  
                 cmd.Parameters.AddWithValue("@player_name", player.PlayerName);  
                 cmd.Parameters.AddWithValue("@game_code", player.GameCode); 
+  
+                con.Open();  
+                cmd.ExecuteNonQuery();  
+                con.Close();  
+            }  
+		}
+
+		public void MakeMove(Board board)  
+        {  
+            using (SqlConnection con = new SqlConnection(this.connectionString))  
+            {  
+                SqlCommand cmd = new SqlCommand("makeMove", con);  
+                cmd.CommandType = CommandType.StoredProcedure;  
+                cmd.Parameters.AddWithValue("@board_id", board.BoardId);  
+                cmd.Parameters.AddWithValue("@moves", board.Moves); 
+				cmd.Notification = null;
+
+				SqlDependency dependency = new SqlDependency(cmd);
+
+                dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
+  
+                con.Open();  
+                cmd.ExecuteNonQuery();  
+                con.Close();  
+            }  
+		}
+
+		private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
+		{           
+
+			JobHub.Show();
+
+		}
+
+		public void AddWinner(string game_code, int player_id)  
+        {  
+            using (SqlConnection con = new SqlConnection(this.connectionString))  
+            {  
+                SqlCommand cmd = new SqlCommand("addWinner", con);  
+                cmd.CommandType = CommandType.StoredProcedure;  
+                cmd.Parameters.AddWithValue("@game_code", game_code);  
+                cmd.Parameters.AddWithValue("@player_id", player_id); 
   
                 con.Open();  
                 cmd.ExecuteNonQuery();  

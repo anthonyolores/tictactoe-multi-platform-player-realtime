@@ -11,7 +11,6 @@ namespace webapi
 		public static void Register(HttpConfiguration config)
 		{
 			// Web API configuration and services
-			// Web API configuration and services
 			config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream"));
 			config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
 			// Web API routes

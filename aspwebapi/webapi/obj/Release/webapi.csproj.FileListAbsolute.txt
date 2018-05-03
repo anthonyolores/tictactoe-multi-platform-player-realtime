@@ -96,3 +96,15 @@ D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft
 D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\obj\Release\webapi.csproj.CoreCompileInputs.cache
 D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\obj\Release\webapi.dll
 D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\obj\Release\webapi.pdb
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.Owin.dll
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.Owin.Security.dll
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Owin.dll
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.Owin.xml
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\bin\Microsoft.Owin.Security.xml
+D:\AnthonyFiles\Training\DOTNET_MVC\tictactoeproject\webapi\webapi\obj\Release\webapi.csprojResolveAssemblyReference.cache

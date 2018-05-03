@@ -10,16 +10,22 @@ namespace webapi.Controllers
 {
     public class GameController : ApiController
     {
-		// GET api/values
-		public IEnumerable<string> Get2()
+
+		//[System.Web.Http.Description.ResponseType(typeof(ResponseGetGames[]))]
+		public IEnumerable<Object> GetGames()
 		{
 			DataAccess access = new DataAccess();
-			access.CreateGame("Yoshiaki Arigato");
-			return new string[] { "value2", "value2" };
+			return access.GetGames();
 		}
-		// POST api/game/creategame
+
+		public IEnumerable<GetGameBoard> GetGameBoards(String gameCode)
+		{
+			DataAccess access = new DataAccess();
+			return access.GetGameBoards(gameCode);
+		}
+
 		[System.Web.Http.Description.ResponseType(typeof(String))]
-        public IHttpActionResult CreateGame([FromBody] String name)
+        public IHttpActionResult PostCreateGame(Player player)
         {
 			String result = "";
 
@@ -28,7 +34,7 @@ namespace webapi.Controllers
 				if (this.ModelState.IsValid)
 				{
 					DataAccess access = new DataAccess();
-					access.CreateGame(name);
+					access.CreateGame(player.PlayerName);
 
 					result = "New Game has been created Successfully <br>" + 
 						"Invite your friends to play with you using this code <b>" + access.GameCode + "</b>";
@@ -43,7 +49,7 @@ namespace webapi.Controllers
         }
 
 		[System.Web.Http.Description.ResponseType(typeof(String))]
-        public IHttpActionResult JoinGame([FromBody] JoinPlayer player)
+        public IHttpActionResult PostJoinGame(JoinPlayer player)
         {
 			String result = "";
 
@@ -60,6 +66,39 @@ namespace webapi.Controllers
             catch (Exception e)
             {
                 result = "Joining game has error";
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = 1 }, result);
+        }
+
+		[System.Web.Http.Description.ResponseType(typeof(String))]
+        public IHttpActionResult MakeMove([FromBody] Board board)
+        {
+			String result = "";
+
+			 try
+            {
+				if (this.ModelState.IsValid)
+				{
+					DataAccess access = new DataAccess();
+					access.MakeMove(board);
+
+					if(UtilGame.checkWin(board.Moves)){
+						access.AddWinner(board.GameCode, board.PlayerId);
+						result = "Congratulations you won in the board(" + board.BoardId + ")";
+					}
+					else{
+						result = "You have successfully made your move in the board(" + board.BoardId + ")";
+					}
+
+				}
+				else{
+					result = " if Making move has error";
+				}
+            }
+            catch (Exception e)
+            {
+                result = "Making move has error";
             }
 
             return CreatedAtRoute("DefaultApi", new { id = 1 }, result);

@@ -7,19 +7,18 @@ namespace webapi.Models
 {
 	public class Player
 	{
-		int movesCount = 0;
-		int [] moves = new int[5];
-		string name = "";
-		string symbol = "";
-		
+		int playerId;
+		string moves;
+		string playerName;
 
-		public Player()
+		public Player(Int32 playerId, String moves)
 		{
+			this.PlayerId = playerId;
+			this.Moves = moves;
 		}
 
-		public Int32[] Moves { get => this.moves; set => this.moves = value; }
-		public Int32 MovesCount { get => this.movesCount; set => this.movesCount = value; }
-		public string Name { get => this.name; set => this.name = value; }
-		public String Symbol { get => this.symbol; set => this.symbol = value; }
+		public String Moves { get => this.moves; set => this.moves = value; }
+		public Int32 PlayerId { get => this.playerId; set => this.playerId = value; }
+		public String PlayerName { get => this.playerName; set => this.playerName = value; }
 	}
 }
