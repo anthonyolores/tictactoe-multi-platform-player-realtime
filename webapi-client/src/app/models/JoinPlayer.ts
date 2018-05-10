@@ -1,4 +1,4 @@
 export interface JoinPlayer{
-    playerName:string;
-    gameCode:string;
+    PlayerName:string;
+    GameCode:string;
 } 

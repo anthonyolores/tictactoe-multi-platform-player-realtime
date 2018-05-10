@@ -11,11 +11,9 @@ import {JoinPlayer, Player, GameItem, GameBoard} from './models/GameModels';
 @Injectable()
 export class GameService {
 
-  private hostUrl:String = "http://tictactoe.web:8069/api/game/";
-  private headers = new HttpHeaders();
+  private hostUrl:String = "http://localhost:56168/api/game/";
 
   constructor(private http: HttpClient) {
-    this.headers.append('Content-Type', 'application/json');
    }
 
   handleError(arg0: any): any {
@@ -29,12 +27,23 @@ export class GameService {
 
   createGame(player:Player){
     let url = this.hostUrl + 'postcreategame';
-    return this.http.post(url, player, {headers: this.headers});
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(url, player, {headers: headers});
   }
 
-  joinGame(joinPlayer:JoinPlayer): Observable<Object>{
+  joinGame(joinPlayer:JoinPlayer){
     let url = this.hostUrl + 'postjoingame';
-    return this.http.post(url, joinPlayer, {headers: this.headers});
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(url, joinPlayer, {headers: headers});
+  }
+
+  makeMove(board:GameBoard){  
+    let url = this.hostUrl + 'postmakemove';
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(url, board, {headers: headers});
   }
 
   getGameBoards(gameCode:String): Observable<GameBoard[]>{

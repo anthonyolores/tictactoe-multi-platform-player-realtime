@@ -1,4 +1,4 @@
 export interface Player{
-    playerName:string;
-    moves:string;
+    PlayerName:string;
+    Moves:string;
 }

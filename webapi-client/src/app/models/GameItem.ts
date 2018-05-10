@@ -1,5 +1,5 @@
 export interface GameItem{
-    playerName:string;
-    gameCode:string;
-    noPlayers:number; 
+    PlayerName:string;
+    GameCode:string;
+    NoPlayers:number; 
 }

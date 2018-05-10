@@ -1,4 +1,6 @@
-
+<!--this is the default path where SignalR generates its JS files so you don't need to change it.-->
+<script src="~/signalr/hubs"></script>
+<!-- Home -->
 <div class="container start-page" [hidden]="showBoard || showGames">
     <div class="row player-name-container">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -21,35 +23,28 @@
       </div>
     </div>
   </div>
+<!-- Game Board -->
 <div class="container" [hidden]="!showBoard">
     <div class="row game-container">
         <div class="col-md-4 col-sm-4 col-xs-4 game-cell"
-        *ngFor="let cell of board; let i = index">
+        *ngFor="let cell of board; let i = index"
+        id="cell{{i}}" (click)="playerMakeMove(i)">
           <div class="cell-text">
-            X
           </div>
         </div>
     </div>
-    <div class="row btn-container">
-      <div class="col-md-6 col-sm-6 col-xs-6 game-btn btn btn-success">
-          X
-      </div>
-      <div class="col-md-6 col-sm-6 col-xs-6 game-btn btn btn-primary">
-          O
-      </div>
-    </div>
   </div>
-
+  <!-- List of Games -->
   <div class="container get-games" [hidden]="!showGames">
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 col-xs-8 col-sm-8">
             <ul>
                 <li *ngFor="let gameItem of games; let i = index">     
-                  {{gameItem.GameCode}}
-                  <span class="player-waiting-label">{{gameItem.PlayerName}} is waiting...</span>
+                  {{gameItem.PlayerName}}
+                  <span class="player-waiting-label">{{gameItem.GameCode}}</span>
                   <div class="btn-primary player-join-btn"
-                  (click)="playerJoinGame(i)">Join Game
+                  (click)="playerJoinGame(i)">Join
                 </div>
                 </li>
             </ul>

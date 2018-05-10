@@ -1,6 +1,6 @@
 export interface GameBoard{
-    gameId:number;
-    playerId:number;
-    playerName:string;
-    moves:string; 
+    BoardId:number;
+    PlayerId:number;
+    GameCode:string;
+    Moves:string; 
 }
