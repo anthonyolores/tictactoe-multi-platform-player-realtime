@@ -8,14 +8,21 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 
 import { SignalRModule } from 'ng2-signalr';
-import { SignalRConfiguration, ConnectionTransport } from 'ng2-signalr';
+import { SignalRConfiguration } from 'ng2-signalr';
 
-const config = new SignalRConfiguration();
-config.hubName = 'Ng2SignalRHub';  //default
-config.qs = { user: 'donald' };
-config.url = 'http://ng2-signalr-backend.azurewebsites.net/';
-// Specify one Transport: config.transport = ConnectionTransports.longPolling; or fallback options with order like below. Defaults to best avaliable connection.
-config.transport = [ConnectionTransports.webSockets, ConnectionTransports.longPolling];
+// v2.0.0
+export function createConfig(): SignalRConfiguration {
+  const c = new SignalRConfiguration();
+  c.hubName = 'GameHub';
+  c.qs = { user: 'donald' };
+  c.url = 'http://localhost:56168';
+  c.logging = true;
+  
+  c.executeEventsInZone = true; // optional, default is true
+  c.executeErrorsInZone = false; // optional, default is false
+  c.executeStatusChangeInZone = true; // optional, default is true
+  return c;
+}
 
 @NgModule({
   declarations: [
@@ -26,7 +33,7 @@ config.transport = [ConnectionTransports.webSockets, ConnectionTransports.longPo
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    SignalRModule
+    SignalRModule.forRoot(createConfig)
   ],
   providers: [GameService],
   bootstrap: [AppComponent]

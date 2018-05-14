@@ -23,7 +23,6 @@ $cell-border-active: solid 1px blue;
         }
     }    
 
-    
     .game-cell.green{
         background-color: #28a745;
     }
@@ -123,7 +122,19 @@ $cell-border-active: solid 1px blue;
     }
 
 }
+.board-info{
+    padding:15px;
+    color: #888;
+    font-size: 1.5em;
+    position: absolute;
+    right:0px;
+}
+.clear-board-btn{
+    padding:15px !important; 
+    font-size: 1.5em;
+    cursor:pointer
 
+}
 .back-homepage-btn{
     position: absolute;
     padding:15px;

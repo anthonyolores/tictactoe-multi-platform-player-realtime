@@ -33,6 +33,16 @@
           </div>
         </div>
     </div>
+    <div class="row" style="margin-top:15px;">
+      <div class="col-md-4">
+          <div class="btn-primary clear-board-btn"
+          (click)="resetBoard()">Clear My Moves</div>
+      </div>
+      <div class="col-md-8">
+          <span class="board-info"></span>
+      </div>
+      
+    </div>
   </div>
   <!-- List of Games -->
   <div class="container get-games" [hidden]="!showGames">
