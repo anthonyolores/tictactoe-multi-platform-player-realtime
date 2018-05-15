@@ -3,7 +3,6 @@ import { GameService } from '../game.service';
 import {JoinPlayer, Player, GameItem, GameBoard} from '../models/GameModels';
 import * as $ from 'jquery';
 import { SignalR, SignalRConnection, IConnectionOptions } from 'ng2-signalr';
-import { join } from 'path';
 
 @Component({
   selector: 'app-game',
@@ -16,13 +15,17 @@ export class GameComponent implements OnInit {
   public showGames: boolean = false;
   public playerName: string = "";
   public games: GameItem[];
-  public myBoard: GameBoard;
-  public opponent: JoinPlayer;
-  public boardStyle = {Code:'', CellColor:''};
+
+  private myBoard: GameBoard;
+  private opponent: JoinPlayer;
+  private boardStyle = {Code:'', CellColor:''};
+  private myTurn:boolean;
+  private opponentName:string;
+
   private connection:any;
   private signal:any;
   private playerJoinListener:any;
-  private myTurn:boolean;
+  private winnerListener:any;
   
   @ViewChild('name') nameElement;
 
@@ -39,7 +42,7 @@ export class GameComponent implements OnInit {
     this.connection.start().then((c) => {
     this.signal = c;
       let movesListener = c.listenFor('opponentMove');
-      let winnerListener = c.listenFor('opponentHasWon');
+      this.winnerListener = c.listenFor('opponentHasWon');
       this.playerJoinListener = c.listenFor('playerJoinGame');
       movesListener.subscribe((data:any) => {
         let opponentBoard = data as GameBoard;         
@@ -56,8 +59,9 @@ export class GameComponent implements OnInit {
           console.log(data);
         }
       });
-      winnerListener.subscribe((data:any) => {
-        if(data === true){
+  
+      this.winnerListener.subscribe((data:any) => {
+        if(data == true && this.myBoard.Won != true){
           alert("You Lose! haha");  
           this.clearBoard();
         }
@@ -71,9 +75,9 @@ export class GameComponent implements OnInit {
 
   getGames(){
     this.gameService.getGames().subscribe(data => {
+      console.log("get games");
       console.log(data);
       this.games = data;
-
       }, err => {
       });
   }
@@ -94,11 +98,11 @@ export class GameComponent implements OnInit {
         }, err => {
           console.log(err);  
       });
-
       this.playerJoinListener.subscribe((data:any) => {
         this.opponent = data as JoinPlayer;  
         if(this.opponent.GameCode == this.myBoard.GameCode){
-          $(".board-info").text(this.opponent.PlayerName + " has joined, just wait for their first move.");
+          this.opponentName = this.opponent.PlayerName;
+          $(".board-info").text(this.opponentName + " has joined, just wait for his/her first move.");
           console.log('Opponents Board');
           console.log(data);
         }   
@@ -124,6 +128,7 @@ export class GameComponent implements OnInit {
     this.clearBoard();
     this.boardStyle.Code = "O";
     this.boardStyle.CellColor = "blue";
+    this.opponentName = this.games[index].PlayerName;
     $(".board-info").text("Your turn first");
     let jp:JoinPlayer = {
       PlayerName: this.playerName.toString(),
@@ -152,20 +157,21 @@ export class GameComponent implements OnInit {
         this.addMoveToCell("#cell" + cell.toString(), this.boardStyle.CellColor, this.boardStyle.Code);
         this.changeTurn(false);
         this.gameService.makeMove(this.myBoard).subscribe(data => {  
-          this.signal.invoke('SendMessage', this.myBoard).then((data:any) => {
+          this.signal.invoke('MakeMove', this.myBoard).then((data:any) => {
             console.log("Send Moves");
             console.log(data);
           });
-    
-          if(data){
-            alert("You Win");   
-            this.clearBoard();       
-          }
-
+          data = data as boolean;
+          this.myBoard.Won = data?true:false;    
           this.signal.invoke('OpponentWon', data).then((data:any) => {
             console.log("Send Move Result");
             console.log(data);
           });
+          
+          if(data){
+            alert("You Won");
+            this.clearBoard();                    
+          }
 
         }, err => {
           console.log(err);  
@@ -175,8 +181,9 @@ export class GameComponent implements OnInit {
 
   changeTurn(turn:boolean){
     this.myTurn = turn;
-    $(".board-info").text(turn?"Your Turn":this.opponent.PlayerName + "'s Turn");
+    $(".board-info").text(turn?"Your Turn":this.opponentName + "'s Turn");
   }
+
   addMoveToCell(id, color, code){
     if(!$(id).hasClass("blue") && !$(id).hasClass("green")){
       $(id).addClass(color);
@@ -201,6 +208,8 @@ export class GameComponent implements OnInit {
       $(id).removeClass("green");
       $(id + "> .cell-text").text("");   
     }
+    if(this.myBoard != null)
+    this.myBoard.Moves = "";
   }
 
   isDraw():boolean{

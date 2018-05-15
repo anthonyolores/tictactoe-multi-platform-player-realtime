@@ -3,4 +3,5 @@ export interface GameBoard{
     PlayerId:number;
     GameCode:string;
     Moves:string; 
+    Won:boolean;
 }
